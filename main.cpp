@@ -23,7 +23,9 @@ bool hasPairSumOf(const vector<int>& vec, int sum) {
 // customized binary search
 // you can change functor F, for any purposes
 // current finds index of min an in array a = [a0 > a1 > .. > an < b1 < b2 < .. < bm]
-int binarySearch(const vector<int>& ar, int lo, int high) {
+int binarySearch(const vector<int>& ar) {
+    int lo = 0;
+    int high = ar.size() - 1;
     if (lo > high) {
         return -1;
     }
@@ -103,7 +105,6 @@ void reverse() {
 }
 
 int main() {
-    reverse();
     return 0;
 }
 
