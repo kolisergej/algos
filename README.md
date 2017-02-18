@@ -1,4 +1,11 @@
 # algos
 algos for fun
 
-cmake -Dcoverage=True - compilation for test coverage options 
+For algorithms building:
+cmake
+make 
+
+Compilation for test coverage options 
+cmake -Dcoverage=True
+make
+ctest
