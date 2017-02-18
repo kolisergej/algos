@@ -1,9 +1,13 @@
-project(algos)
-
 cmake_minimum_required(VERSION 2.8)
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -Wall")
 
-aux_source_directory(. SRC_LIST)
+project(algorithms)
 
-add_executable(${PROJECT_NAME} ${SRC_LIST})
+set(CMAKE_MACOSX_RPATH TRUE)
 
+set(GCC_COVERAGE_COMPILE_FLAGS "-fprofile-arcs -ftest-coverage")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS} -std=c++1y -Wall")
+
+enable_testing()
+
+add_subdirectory(tests)
+add_subdirectory(libalgos)
