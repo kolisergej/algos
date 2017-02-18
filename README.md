@@ -2,10 +2,10 @@
 algos for fun
 
 For algorithms building:
-cmake
-make 
+cmake <br>
+make <br>
 
 Compilation for test coverage options 
-cmake -Dcoverage=True
-make
-ctest
+cmake -Dcoverage=True <br>
+make <br>
+ctest <br>
