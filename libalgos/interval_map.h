@@ -6,6 +6,7 @@
 
 using std::map;
 
+// Template class for IntervalMap container
 template<class ValueType>
 class IntervalMap {
     map<int, ValueType> m_intervalMap;
@@ -19,7 +20,6 @@ public:
         return m_intervalMap.size();
     }
 
-
     ValueType getElement(int key) {
         return (--m_intervalMap.upper_bound(key))->second;
     }
@@ -30,12 +30,22 @@ public:
         }
 
         auto startIt = m_intervalMap.upper_bound(intervalFirst);
-        const ValueType previousValue = *(startIt - 1);
         auto finishIt = m_intervalMap.upper_bound(intervalSecond);
-        m_intervalMap.erase(startIt, finishIt);
+        const ValueType previousValue = (--finishIt)->second;
+        finishIt++;
+        m_intervalMap.insert(startIt, std::make_pair(intervalFirst, value));
+        m_intervalMap.insert(finishIt, std::make_pair(intervalSecond, previousValue));
 
-        m_intervalMap.insert(startIt, value);
-        m_intervalMap.insert(finishIt + 1, previousValue);
+        m_intervalMap.erase(insertedFirst, insertedSecond);
+
+//        m_intervalMap[intervalFirst] = value;
+//        m_intervalMap[intervalSecond] = previousValue;
+    }
+
+    void show() {
+        for (auto p: m_intervalMap) {
+            cout << p.first << " " << p.second << std::endl;
+        }
     }
 };
 

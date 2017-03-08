@@ -58,11 +58,28 @@ TEST_F(AlgoTests, QueueTest) {
 TEST_F(AlgoTests, IntervalMapTest) {
     const int initValue = 100;
     IntervalMap<int> interval_map(initValue);
-    EXPECT_TRUE(interval_map.size() == 1);
     EXPECT_EQ(interval_map.getElement(30), initValue);
     EXPECT_EQ(interval_map.getElement(-10000), initValue);
 
+    const int secondValue = -999;
+    interval_map.setElement(10, 20, secondValue);
+    EXPECT_EQ(interval_map.getElement(9), initValue);
+    EXPECT_EQ(interval_map.getElement(10), secondValue);
+    EXPECT_EQ(interval_map.getElement(11), secondValue);
+    EXPECT_EQ(interval_map.getElement(19), secondValue);
+    EXPECT_EQ(interval_map.getElement(20), initValue);
+    EXPECT_EQ(interval_map.getElement(21), initValue);
+    interval_map.show();
+    cout << std::endl;
 
-
+    const int thirdValue = 555;
+    interval_map.setElement(15, 25, thirdValue);
+    interval_map.show();
+    EXPECT_EQ(interval_map.getElement(14), secondValue);
+    EXPECT_EQ(interval_map.getElement(15), thirdValue);
+//    EXPECT_EQ(interval_map.getElement(16), thirdValue);
+//    EXPECT_EQ(interval_map.getElement(24), thirdValue);
+//    EXPECT_EQ(interval_map.getElement(25), initValue);
+//    EXPECT_EQ(interval_map.getElement(26), initValue);
 
 }

@@ -33,12 +33,17 @@ void reverse() {
     Node* curr = l.head;
     Node* prev = 0;
     while (curr != nullptr) {
+        // Remember next
         Node* next = curr->next;
 
+        // Swap pointers
         curr->next = prev;
         prev = curr;
+
+        // Set up next
         curr = next;
     }
+    // Set up head to last prev pointer
     l.head = prev;
 
     show(l.head);
