@@ -1,14 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <array>
-#include <functional>
-#include <random>
-#include <map>
-
-
-#include "base.h"
-
-using namespace std;
+#include "algotests.h"
 
 int main(int argc, char** argv) {
 

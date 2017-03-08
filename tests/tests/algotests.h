@@ -1,5 +1,5 @@
-#ifndef BASE_H
-#define BASE_H
+#ifndef ALGOTESTS_H
+#define ALGOTESTS_H
 
 #include "gtest/gtest.h"
 
@@ -24,4 +24,4 @@ protected:
     virtual void TearDown();
 };
 
-#endif // BASE_H
+#endif // ALGOTESTS_H

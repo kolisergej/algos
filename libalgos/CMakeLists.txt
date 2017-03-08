@@ -1,4 +1,4 @@
-aux_source_directory(. libalgos_SRC)
+file(GLOB libalgos_SRC "*.h" "*.cpp")
 
 add_library(libalgos SHARED ${libalgos_SRC})
 
