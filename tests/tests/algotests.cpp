@@ -69,17 +69,28 @@ TEST_F(AlgoTests, IntervalMapTest) {
     EXPECT_EQ(interval_map.getElement(19), secondValue);
     EXPECT_EQ(interval_map.getElement(20), initValue);
     EXPECT_EQ(interval_map.getElement(21), initValue);
-    interval_map.show();
-    cout << std::endl;
 
     const int thirdValue = 555;
     interval_map.setElement(15, 25, thirdValue);
-    interval_map.show();
     EXPECT_EQ(interval_map.getElement(14), secondValue);
     EXPECT_EQ(interval_map.getElement(15), thirdValue);
-//    EXPECT_EQ(interval_map.getElement(16), thirdValue);
-//    EXPECT_EQ(interval_map.getElement(24), thirdValue);
-//    EXPECT_EQ(interval_map.getElement(25), initValue);
-//    EXPECT_EQ(interval_map.getElement(26), initValue);
+    EXPECT_EQ(interval_map.getElement(16), thirdValue);
+    EXPECT_EQ(interval_map.getElement(24), thirdValue);
+    EXPECT_EQ(interval_map.getElement(25), initValue);
+    EXPECT_EQ(interval_map.getElement(26), initValue);
 
+    const int fourthValue = 666;
+    interval_map.setElement(30, 31, fourthValue);
+    EXPECT_EQ(interval_map.getElement(29), initValue);
+    EXPECT_EQ(interval_map.getElement(30), fourthValue);
+    EXPECT_EQ(interval_map.getElement(31), initValue);
+
+    const int finalValue = 999;
+    interval_map.setElement(-100, 1000, finalValue);
+    EXPECT_EQ(interval_map.getElement(-101), initValue);
+    EXPECT_EQ(interval_map.getElement(-100), finalValue);
+    EXPECT_EQ(interval_map.getElement(-99), finalValue);
+    EXPECT_EQ(interval_map.getElement(999), finalValue);
+    EXPECT_EQ(interval_map.getElement(1000), initValue);
+    EXPECT_EQ(interval_map.getElement(1001), initValue);
 }

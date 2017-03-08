@@ -25,7 +25,7 @@ public:
     }
 
     void setElement(int intervalFirst, int intervalSecond, const ValueType& value) {
-        if (intervalFirst > intervalSecond) {
+        if (intervalFirst >= intervalSecond) {
             return;
         }
 
@@ -33,13 +33,10 @@ public:
         auto finishIt = m_intervalMap.upper_bound(intervalSecond);
         const ValueType previousValue = (--finishIt)->second;
         finishIt++;
-        m_intervalMap.insert(startIt, std::make_pair(intervalFirst, value));
-        m_intervalMap.insert(finishIt, std::make_pair(intervalSecond, previousValue));
+        auto insertedFirst = m_intervalMap.insert(startIt, std::make_pair(intervalFirst, value));
+        auto insertedSecond = m_intervalMap.insert(finishIt, std::make_pair(intervalSecond, previousValue));
 
-        m_intervalMap.erase(insertedFirst, insertedSecond);
-
-//        m_intervalMap[intervalFirst] = value;
-//        m_intervalMap[intervalSecond] = previousValue;
+        m_intervalMap.erase(++insertedFirst, insertedSecond);
     }
 
     void show() {
