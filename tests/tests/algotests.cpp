@@ -1,8 +1,11 @@
 #include "algotests.h"
 
+#include <random>
+
 #include "reverseList.h"
 #include "binarySearch.h"
-#include "sumProblem.h"
+#include "twoSumProblem.h"
+#include "threeSumProblem.h"
 #include "interval_map.h"
 #include "queue.h"
 
@@ -93,4 +96,36 @@ TEST_F(AlgoTests, IntervalMapTest) {
     EXPECT_EQ(interval_map.getElement(999), finalValue);
     EXPECT_EQ(interval_map.getElement(1000), initValue);
     EXPECT_EQ(interval_map.getElement(1001), initValue);
+
+//    random_device rd;
+//    mt19937 gen(rd());
+//    uniform_int_distribution<> dist1(-100000, 1000);
+//    uniform_int_distribution<> dist2(1001, 100000);
+//    uniform_int_distribution<> dist3(-100000, 100000);
+//    for (int index = 0; index < 100000000; ++index) {
+//        auto firstBound = dist1(gen);
+//        auto secondBound = dist2(gen);
+//        auto value = dist3(gen);
+//        interval_map.setElement(firstBound, secondBound, value);
+//    }
+}
+
+TEST_F(AlgoTests, ThreeSumTest) {
+    EXPECT_EQ(threeSumSolve({-1,0,1}), vector<vector<int>>({{-1,0,1}}));
+    EXPECT_EQ(threeSumSolve({-1,-1,0,0,1,1,1,1}), vector<vector<int>>({{-1,0,1}}));
+    EXPECT_EQ(threeSumSolve({-1,-1,0,0,0,1,1,1,1}), vector<vector<int>>({{-1,0,1},{0,0,0}}));
+    EXPECT_EQ(threeSumSolve({9,4,3,6,0,-1,5,6,-15,3,9,2}), vector<vector<int>>({{ -15, 6, 9 }}));
+}
+
+TEST_F(AlgoTests, ReverseListTest) {
+    Node* a = new Node{1, new Node{2, new Node{3, new Node{4, new Node{5, nullptr}}}}};
+    a = reverseList(a);
+
+    EXPECT_EQ(a->val, 5);
+    EXPECT_EQ(a->pNext->val, 4);
+    EXPECT_EQ(a->pNext->pNext->val, 3);
+    EXPECT_EQ(a->pNext->pNext->pNext->val, 2);
+    EXPECT_EQ(a->pNext->pNext->pNext->pNext->val, 1);
+
+    freeList(a);
 }

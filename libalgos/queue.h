@@ -5,6 +5,9 @@
 
 using std::stack;
 
+
+/// @brief Queue implementation based on two stacks
+/// Get element complexity is amortized O(1)
 template<class Type>
 class my_queue {
     std::stack<Type> m_first;

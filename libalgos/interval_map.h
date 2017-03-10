@@ -6,7 +6,8 @@
 
 using std::map;
 
-// Template class for IntervalMap container
+/// @brief Template class for IntervalMap container
+/// There is always one interval from [minValue; +INF)
 template<class ValueType>
 class IntervalMap {
     map<int, ValueType> m_intervalMap;
@@ -33,6 +34,7 @@ public:
         auto finishIt = m_intervalMap.upper_bound(intervalSecond);
         const ValueType previousValue = (--finishIt)->second;
         finishIt++;
+
         auto insertedFirst = m_intervalMap.insert(startIt, std::make_pair(intervalFirst, value));
         auto insertedSecond = m_intervalMap.insert(finishIt, std::make_pair(intervalSecond, previousValue));
 

@@ -4,47 +4,38 @@
 
 using namespace std;
 
-void show(Node* head) {
-    Node* curr = head;
+void showList(Node* pHead) {
+    Node* curr = pHead;
     while (curr) {
         cout << curr->val << endl;
-        curr = curr->next;
+        curr = curr->pNext;
     }
 }
 
-void reverse() {
-    Node a;
-    Node b;
-    Node c;
-    Node d;
-    a.val = 1;
-    a.next = &b;
-    b.val = 2;
-    b.next = &c;
-    c.val = 3;
-    c.next = &d;
-    d.val = 4;
-    d.next = nullptr;
+void freeList(Node* pHead) {
+    Node* curr = pHead;
+    while (curr) {
+        Node* tmp = curr->pNext;
+        delete curr;
+        curr = tmp;
+    }
+}
 
-    List l{&a};
-
-    show(l.head);
-
-    Node* curr = l.head;
+Node* reverseList(Node* pHead) {
+    Node* curr = pHead;
     Node* prev = 0;
     while (curr != nullptr) {
         // Remember next
-        Node* next = curr->next;
+        Node* next = curr->pNext;
 
         // Swap pointers
-        curr->next = prev;
+        curr->pNext = prev;
         prev = curr;
 
         // Set up next
         curr = next;
     }
     // Set up head to last prev pointer
-    l.head = prev;
-
-    show(l.head);
+    pHead = prev;
+    return pHead;
 }
